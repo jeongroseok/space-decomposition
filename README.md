@@ -35,3 +35,11 @@ UCF-QNRF - A Large Crowd Counting Data Set(https://www.crcv.ucf.edu/data/ucf-qnr
 pascal voc - 0명 or 1명 or 2명
 
 # 백본 MOBILENET V2(https://pytorch.org/hub/pytorch_vision_mobilenet_v2/)
+
+# 2020년 11월 5일 정리
+
+1. 사등분한 이미지의 모서리서 액션을 취할경우 인식을 못함, 따라서 자를때 페딩을 주자.
+2. binary 분류 문제가 더 중요하므로, 바이너리 쪽 loss를 더 강화하자.
+3. 데이터셋을 좀더 cctv에 맞도록 강화하자, 공개 데이터셋 장거리, 중거리, 단거리 세가지 혼합 할것
+4. 영상 만들기
+5. 백본은 오염될수 있으므로 파인튜닝은 금지

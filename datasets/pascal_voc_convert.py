@@ -9,6 +9,11 @@ def main():
     # separate images
     dataset_dict = {0: [], 1: [], 2: [], 3: []}
     for input, label in dataset:
+        if len(label['annotation']['object']) <= 1:
+            if label['annotation']['object'][0]['name'] in [
+                    "bird", "cat", "cow", "dog", "horse", "sheep"
+            ]:
+                continue
         people = sum([
             1 if obj['name'] == "person" else 0
             for obj in label['annotation']['object']
