@@ -9,8 +9,6 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms, utils
 
-import cv2
-
 
 def _onehot(labels: np.ndarray, num_classes: int):
     return np.eye(num_classes)[labels]
@@ -24,7 +22,7 @@ def _parse_timedelta(value: str) -> timedelta:
     return timedelta(hours=arr[0], minutes=arr[1], seconds=arr[2])
 
 
-class NIA2019V1Dataset(Dataset):
+class NIA2019v1(Dataset):
     """이상행동 CCTV 영상 AI데이터셋"""
     def __init__(self,
                  npz_filename: str,
@@ -85,7 +83,7 @@ class NIA2019V1DataModule(pl.LightningDataModule):
             return x.float().div(255)
 
         transform = transforms.Compose([to_tensor])
-        self.dataset = NIA2019V1Dataset(self.npz_filename, transform)
+        self.dataset = NIA2019v1(self.npz_filename, transform)
 
     def train_dataloader(self) -> Dataset:
         return DataLoader(self.dataset,
